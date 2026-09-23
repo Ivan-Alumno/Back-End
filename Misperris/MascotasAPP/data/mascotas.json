@@ -1,0 +1,32 @@
+[
+  {
+    "nombre": "Causa",
+    "raza": "Golden Retriever",
+    "descripcion": "Un perro muy juguetón y leal.",
+    "foto": "/static/images/perro1.jpg"
+  },
+  {
+    "nombre": "Luna",
+    "raza": "Pastor Alemán",
+    "descripcion": "Muy inteligente, activa y protectora con la familia.",
+    "foto": "/static/images/perro2.jpg"
+  },
+  {
+    "nombre": "Max",
+    "raza": "Beagle",
+    "descripcion": "Amigable, curioso y siempre listo para salir a caminar.",
+    "foto": "/static/images/perro3.jpg"
+  },
+  {
+    "nombre": "Coco",
+    "raza": "Chihuahua",
+    "descripcion": "Pequeño pero con mucha personalidad y energía.",
+    "foto": "/static/images/perro4.jpg"
+  },
+  {
+    "nombre": "Nala",
+    "raza": "Labrador",
+    "descripcion": "Cariñosa, tranquila y brillante con los niños.",
+    "foto": "/static/images/perro7.jpg"
+  }
+]
