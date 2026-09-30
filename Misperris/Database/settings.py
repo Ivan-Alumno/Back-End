@@ -4,7 +4,7 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES_DIRS = os.path.join(BASE_DIR, 'templates')
-STATIC_URL = os.path.join(BASE_DIR, 'static')
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-3@=+l=%iog3lmn_z4wtj6b7xt)8cj@^lavzr3r-yag=g(ab3^n'
@@ -56,7 +56,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Database.wsgi.application'
 
-
 # Database
 DATABASES = {
     'default': {
@@ -93,8 +92,8 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / 'Static']
+STATIC_URL = 'static/'
+STATICFILES_DIRS = [STATIC_DIR]
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
