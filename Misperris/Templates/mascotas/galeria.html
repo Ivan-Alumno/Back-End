@@ -1,5 +1,5 @@
-{% load static %}
 <!DOCTYPE html>
+{% load static %}
 <html lang="es">
 
     <head>
@@ -18,9 +18,8 @@
                 </div>
 
                 <nav class="main-nav" aria-label="Menú principal">
-                    <a href="{% url 'index' %}">Inicio</a>
+                    <a href="{% url 'inicio' %}">Inicio</a>
                     <a href="{% url 'galeria' %}">Galería</a>
-                    <a href="#">Formulario</a>
                     <a href="#">Quienes Somos</a>
                 </nav>
             </div>
@@ -33,13 +32,19 @@
                     <div class="pet-grid">
                         {% for mascota in mascotas %}
                         <article class="pet-card">
-                            <img src="{{ mascota.foto }}" alt="{{ mascota.nombre }}">
+                            {% if mascota.foto %}
+                            <img src="{{ mascota.foto.url }}" alt="{{ mascota.nombre }}">
+                            {% endif %}
                             <div class="pet-info">
                                 <h3>{{ mascota.nombre }}</h3>
                                 <p><strong>Raza:</strong> {{ mascota.raza }}</p>
+                                <p><strong>Edad:</strong> {{ mascota.edad_en_anos }} años</p>
+                                <p><strong>Estado:</strong> {{ mascota.get_estado_adopcion_display }}</p>
                                 <p>{{ mascota.descripcion }}</p>
                             </div>
                         </article>
+                        {% empty %}
+                        <p>Aún no hay mascotas registradas.</p>
                         {% endfor %}
                     </div>
                 </div>

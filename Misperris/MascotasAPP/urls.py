@@ -1,8 +1,8 @@
-from django.contrib import admin
 from django.urls import path
-from . import views
+
+from MascotasAPP import views
 
 urlpatterns = [
-    path('', views.index, name='index'),
+    path('', views.inicio, name='inicio'),
     path('galeria/', views.galeria, name='galeria'),
 ]

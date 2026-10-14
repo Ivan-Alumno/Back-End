@@ -95,7 +95,7 @@ img {
     align-items: center;
     background:
         linear-gradient(90deg, rgba(19, 9, 7, 0.38), rgba(19, 9, 7, 0.08)),
-        url('/static/images/tengo-un-perro-sh.jpg') center center / cover no-repeat;
+        url('/Static/images/Perros_portada.png') center center / cover no-repeat;
     background-attachment: scroll;
 }
 

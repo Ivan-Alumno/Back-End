@@ -6,5 +6,11 @@ sexos = (
 
 sexos_mascotas = (
     ('M', 'Macho'),
-    ('H', 'Hembra')
+    ('H', 'Hembra'),
+    ('D', 'Desconocido')
+)
+
+estados_adopcion = (
+    ('disponible', 'Disponible'),
+    ('adoptado', 'Adoptado'),
 )
