@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Administración{% endblock %} · Mis Perris</title>
+    <link rel="stylesheet" href="{% static 'css/Index.css' %}">
+</head>
+<body>
+    {% include "partials/header.html" %}
+    <main class="admin-page">
+        {% include "partials/messages.html" %}
+        <div class="container">
+            <nav class="admin-nav" aria-label="Administración del sitio">
+                <a href="{% url 'gestion_inicio' %}">Solicitudes</a>
+                <a href="{% url 'gestion_mascotas' %}">Mascotas</a>
+                <a href="{% url 'gestion_clientes' %}">Clientes</a>
+            </nav>
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+</body>
+</html>

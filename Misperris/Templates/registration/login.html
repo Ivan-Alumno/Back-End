@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar sesión · Mis Perris</title>
+    <link rel="stylesheet" href="{% static 'css/Index.css' %}">
+</head>
+<body>
+    {% include "partials/header.html" %}
+    <main class="auth-page">
+        {% include "partials/messages.html" %}
+        <section class="auth-card">
+            <h1>Iniciar sesión</h1>
+            <p>Accede a tu cuenta para solicitar la adopción de una mascota.</p>
+            <form method="post">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="form-field">
+                        {{ field.label_tag }}
+                        {{ field }}
+                        {{ field.errors }}
+                    </div>
+                {% endfor %}
+                {% if form.non_field_errors %}
+                    <div class="form-errors">{{ form.non_field_errors }}</div>
+                {% endif %}
+                <input type="hidden" name="next" value="{{ next }}">
+                <button class="btn btn-adopt" type="submit">Iniciar sesión</button>
+            </form>
+            <p class="auth-switch">¿Aún no tienes cuenta? <a href="{% url 'registro' %}">Regístrate</a>.</p>
+            <p class="admin-login-help">
+                Cuenta de administrador:<br>
+                ° Usuario: <strong>Perris_Admin</strong>.<br>
+                ° Contraseña: <strong>Holitas.01</strong>.
+            </p>
+
+        </section>
+    </main>
+</body>
+</html>

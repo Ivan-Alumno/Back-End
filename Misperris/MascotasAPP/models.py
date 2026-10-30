@@ -1,6 +1,7 @@
 from django.core.exceptions import ValidationError
+from django.conf import settings
 from django.db import models
-from MascotasAPP.choices import *
+from MascotasAPP.choices import estados_adopcion, sexos_mascotas
 from MascotasAPP.validators import validate_email_domain_suffix
 
 
@@ -74,6 +75,14 @@ class Mascotas(models.Model):
 
 
 class Clientes(models.Model):
+    usuario = models.OneToOneField(
+        settings.AUTH_USER_MODEL,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='perfil_cliente',
+        verbose_name="Cuenta de usuario",
+    )
     nombre = models.CharField(max_length=100, verbose_name="Nombre del cliente")
     apellido_paterno = models.CharField(max_length=100, verbose_name="Apellido paterno del cliente")
     apellido_materno = models.CharField(max_length=100, blank=True, verbose_name="Apellido materno del cliente")
@@ -93,3 +102,43 @@ class Clientes(models.Model):
         verbose_name = "Cliente"
         verbose_name_plural = "Clientes"
         ordering = ["nombre", "apellido_paterno", "apellido_materno", "correo", "telefono"]
+
+
+class SolicitudAdopcion(models.Model):
+    ESTADOS = (
+        ('pendiente', 'Pendiente'),
+        ('aprobada', 'Aprobada'),
+        ('rechazada', 'Rechazada'),
+    )
+
+    cliente = models.ForeignKey(
+        Clientes,
+        on_delete=models.PROTECT,
+        related_name='solicitudes_adopcion',
+        verbose_name="Solicitante",
+    )
+    mascota = models.ForeignKey(
+        Mascotas,
+        on_delete=models.PROTECT,
+        related_name='solicitudes_adopcion',
+        verbose_name="Mascota solicitada",
+    )
+    estado = models.CharField(
+        max_length=10,
+        choices=ESTADOS,
+        default='pendiente',
+        verbose_name="Estado",
+    )
+    solicitada = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name="Fecha de solicitud",
+    )
+
+    class Meta:
+        db_table = "db_solicitudes_adopcion"
+        verbose_name = "Solicitud de adopción"
+        verbose_name_plural = "Solicitudes de adopción"
+        ordering = ('-solicitada',)
+
+    def __str__(self):
+        return f"{self.cliente} - {self.mascota} ({self.get_estado_display()})"

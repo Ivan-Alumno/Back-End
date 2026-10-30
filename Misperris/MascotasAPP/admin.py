@@ -5,7 +5,7 @@ from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 from django.contrib.auth.models import User
 from django.utils.html import format_html
 
-from MascotasAPP.models import Clientes, Mascotas
+from MascotasAPP.models import Clientes, Mascotas, SolicitudAdopcion
 from MascotasAPP.validators import validate_email_domain_suffix
 
 class ValidatedUserChangeForm(UserChangeForm):
@@ -61,7 +61,7 @@ class ClientesAdminForm(forms.ModelForm):
 
     class Meta:
         model = Clientes
-        fields = '__all__'
+        exclude = ('usuario',)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -186,3 +186,22 @@ class ValidatedUserAdmin(UserAdmin):
 
 admin.site.unregister(User)
 admin.site.register(User, ValidatedUserAdmin)
+
+
+@admin.register(SolicitudAdopcion)
+class SolicitudAdopcionAdmin(admin.ModelAdmin):
+    list_display = ('mascota', 'cliente', 'estado', 'solicitada')
+    list_filter = ('estado', 'solicitada')
+    search_fields = (
+        'mascota__nombre',
+        'cliente__nombre',
+        'cliente__apellido_paterno',
+        'cliente__correo',
+    )
+    readonly_fields = ('cliente', 'mascota', 'estado', 'solicitada')
+
+    def has_add_permission(self, request):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False

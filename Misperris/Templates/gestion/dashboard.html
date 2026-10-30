@@ -1,0 +1,41 @@
+{% extends "gestion/base.html" %}
+
+{% block title %}Solicitudes de adopción{% endblock %}
+
+{% block content %}
+    <h1>Administración del sitio</h1>
+    <section class="admin-stats">
+        <article><strong>{{ cantidad_pendientes }}</strong><span>Solicitudes pendientes</span></article>
+        <article><strong>{{ cantidad_mascotas }}</strong><span>Mascotas registradas</span></article>
+        <article><strong>{{ cantidad_clientes }}</strong><span>Clientes registrados</span></article>
+    </section>
+
+    <section class="admin-panel">
+        <h2>Solicitudes de adopción</h2>
+        {% for solicitud in solicitudes %}
+            <article class="request-row">
+                <div>
+                    <h3>{{ solicitud.mascota.nombre }} · {{ solicitud.get_estado_display }}</h3>
+                    <p><strong>Solicitante:</strong> {{ solicitud.cliente.nombre }} {{ solicitud.cliente.apellido_paterno }}</p>
+                    <p><strong>Correo:</strong> {{ solicitud.cliente.correo }} · <strong>Teléfono:</strong> {{ solicitud.cliente.telefono }}</p>
+                    <p><strong>Dirección:</strong> {{ solicitud.cliente.direccion }}</p>
+                    <p><strong>Fecha:</strong> {{ solicitud.solicitada|date:"d/m/Y H:i" }}</p>
+                </div>
+                {% if solicitud.estado == 'pendiente' %}
+                    <div class="request-actions">
+                        <form method="post" action="{% url 'gestionar_solicitud' solicitud.pk 'aprobar' %}">
+                            {% csrf_token %}
+                            <button class="btn-admin btn-approve" type="submit">Aprobar y asignar</button>
+                        </form>
+                        <form method="post" action="{% url 'gestionar_solicitud' solicitud.pk 'rechazar' %}">
+                            {% csrf_token %}
+                            <button class="btn-admin btn-danger" type="submit">Rechazar</button>
+                        </form>
+                    </div>
+                {% endif %}
+            </article>
+        {% empty %}
+            <p>Aún no hay solicitudes de adopción.</p>
+        {% endfor %}
+    </section>
+{% endblock %}

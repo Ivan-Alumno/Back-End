@@ -3,34 +3,45 @@
 <html lang="es">
 
     <head>
-        <meta charset="UTF-4">
+        <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Misperris</title>
-        <link rel="stylesheet" href="{% static 'CSS/Index.css' %}">
+        <link rel="stylesheet" href="{% static 'css/Index.css' %}">
     </head>
 
     <body>
-        <header class="site-header">
-            <div class="container header-inner">
-                <div class="logo">
-                    <span class="paw">🐾</span>
-                    <span>Mis Perris</span>
-                </div>
-
-                <nav class="main-nav" aria-label="Menú principal">
-                    <a href="{% url 'inicio' %}">Inicio</a>
-                    <a href="{% url 'galeria' %}">Galería</a>
-                    <a href="#">Quienes Somos</a>
-                </nav>
-            </div>
-        </header>
+        {% include "partials/header.html" %}
 
         <main>
-            <section class="hero">
-                <div class="container hero-content">
-                    <h1>Mascotas Felices en Mis Perris</h1>
-                    <p>¿Cuál es la mejor mascota para tu hogar?</p>
-                    <a class="btn" href="#mascotas">Leer Más</a>
+            {% include "partials/messages.html" %}
+            <section class="home-dashboard container">
+                <div class="home-banner">
+                    <img src="{% static 'images/Perros_portada.png' %}" alt="Mascotas de Mis Perris">
+                    <div class="home-banner-copy">
+                        <h1>Mascotas felices, hogares felices</h1>
+                        <p>Encuentra a tu nuevo compañero entre nuestros adoptables.</p>
+                        <a class="btn" href="{% url 'adoptables' %}">Ver mascotas</a>
+                    </div>
+                    <time class="home-clock" datetime="{{ hora_actual|date:'c' }}">
+                        {{ hora_actual|date:"d/m/Y · H:i" }}
+                    </time>
+                </div>
+
+                <div class="home-stats" aria-label="Datos del sistema">
+                    <article class="home-stat-card">
+                        <div>
+                            <h2>Clientes</h2>
+                            <strong>{{ cantidad_clientes }}</strong>
+                        </div>
+                        <span class="home-stat-icon" aria-hidden="true">♙</span>
+                    </article>
+                    <article class="home-stat-card">
+                        <div>
+                            <h2>Mascotas</h2>
+                            <strong>{{ cantidad_mascotas }}</strong>
+                        </div>
+                        <span class="home-stat-icon" aria-hidden="true">♡</span>
+                    </article>
                 </div>
             </section>
 

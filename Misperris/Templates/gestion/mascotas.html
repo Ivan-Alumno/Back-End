@@ -1,0 +1,36 @@
+{% extends "gestion/base.html" %}
+
+{% block title %}Mascotas{% endblock %}
+
+{% block content %}
+    <div class="admin-heading">
+        <h1>Mascotas</h1>
+        <a class="btn-admin btn-approve" href="{% url 'gestion_mascota_nueva' %}">Añadir mascota</a>
+    </div>
+    <div class="table-wrap">
+        <table class="admin-table">
+            <thead>
+                <tr><th>Nombre</th><th>Raza</th><th>Estado</th><th>Adoptada por</th><th>Acciones</th></tr>
+            </thead>
+            <tbody>
+                {% for mascota in mascotas %}
+                    <tr>
+                        <td>{{ mascota.nombre }}</td>
+                        <td>{{ mascota.raza }}</td>
+                        <td>{{ mascota.get_estado_adopcion_display }}</td>
+                        <td>{{ mascota.adoptado_por|default:"—" }}</td>
+                        <td class="table-actions">
+                            <a href="{% url 'gestion_mascota_editar' mascota.pk %}">Editar</a>
+                            <form method="post" action="{% url 'gestion_mascota_eliminar' mascota.pk %}" onsubmit="return confirm('¿Eliminar esta mascota?');">
+                                {% csrf_token %}
+                                <button class="text-button" type="submit">Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr><td colspan="5">No hay mascotas registradas.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
