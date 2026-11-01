@@ -1,0 +1,55 @@
+.auth-page {
+    min-height: calc(100vh - 72px);
+    padding: 36px 0 56px;
+}
+
+.auth-switch {
+    margin: 22px 0 0;
+}
+
+.auth-switch a {
+    color: var(--header-red-dark);
+    font-weight: 700;
+}
+
+.admin-login-help {
+    margin-top: 24px;
+    padding: 12px;
+    border-left: 3px solid var(--accent);
+    background: #f3ece4;
+    color: var(--text-soft);
+    font-size: 0.9rem;
+}
+
+.password-rules {
+    display: grid;
+    gap: 4px;
+    margin: 2px 0 0 !important;
+    padding: 0 !important;
+    list-style: none;
+}
+
+.password-rules li {
+    color: #a72f27;
+    font-size: 0.9rem;
+}
+
+.password-rules li::before {
+    display: inline-block;
+    width: 1.3em;
+    content: "○";
+    font-weight: 700;
+}
+
+.password-rules li.is-met {
+    color: #287348;
+}
+
+.password-rules li.is-met::before {
+    content: "✓";
+}
+
+.password-security-note {
+    color: var(--text-soft);
+    font-size: 0.85rem;
+}

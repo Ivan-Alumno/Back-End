@@ -1,0 +1,152 @@
+.admin-page {
+    min-height: calc(100vh - 72px);
+    padding: 36px 0 56px;
+}
+
+.admin-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin-bottom: 24px;
+    padding: 14px 18px;
+    border-radius: 8px;
+    background: #fffaf6;
+}
+
+.admin-nav a,
+.admin-table a {
+    color: var(--header-red-dark);
+    font-weight: 700;
+}
+
+.admin-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin: 22px 0;
+}
+
+.admin-stats article {
+    display: grid;
+    gap: 4px;
+    padding: 18px;
+    border-radius: 10px;
+    background: #fffaf6;
+    box-shadow: var(--shadow);
+}
+
+.admin-stats strong {
+    color: var(--header-red-dark);
+    font-size: 1.8rem;
+}
+
+.request-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 18px 0;
+    border-top: 1px solid #e4d8d0;
+}
+
+.request-row h3,
+.request-row p {
+    margin: 0 0 6px;
+}
+
+.request-actions,
+.form-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.btn-admin {
+    display: inline-block;
+    padding: 9px 13px;
+    border: 0;
+    border-radius: 5px;
+    color: #fff;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn-approve {
+    background: #287348;
+}
+
+.btn-danger {
+    background: #a72f27;
+}
+
+.btn-secondary {
+    background: #6b5b54;
+}
+
+.admin-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 18px;
+}
+
+.table-wrap {
+    overflow-x: auto;
+    border-radius: 10px;
+    background: #fffaf6;
+    box-shadow: var(--shadow);
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.admin-table th,
+.admin-table td {
+    padding: 12px;
+    border-bottom: 1px solid #e4d8d0;
+    vertical-align: top;
+}
+
+.table-actions {
+    display: flex;
+    gap: 12px;
+    white-space: nowrap;
+}
+
+.table-actions form {
+    margin: 0;
+}
+
+.text-button {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #a72f27;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.form-panel {
+    margin-left: 0;
+}
+
+@media (max-width: 780px) {
+    .admin-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .request-row {
+        flex-direction: column;
+    }
+
+    .form-panel {
+        width: 100%;
+    }
+}

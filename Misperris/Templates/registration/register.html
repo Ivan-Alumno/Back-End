@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crear cuenta · Mis Perris</title>
-    <link rel="stylesheet" href="{% static 'css/Index.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
 </head>
 <body>
     {% include "partials/header.html" %}
@@ -29,11 +30,16 @@
                                 <li data-password-rule="numeric">No usar solo números</li>
                             </ul>
                             <small class="password-security-note">
-                                Django también rechazará contraseñas comunes o similares a tus datos.
+                                Se rechazará contraseñas comunes o similares a tus datos.
                             </small>
                         {% elif field.name == 'password2' %}
                             <ul class="password-rules" aria-live="polite">
-                                <li data-password-rule="match">Las contraseñas coinciden</li>
+                                <li
+                                    data-password-rule="match"
+                                    data-message-pending="Confirma tu contraseña"
+                                    data-message-mismatch="Las contraseñas no coinciden"
+                                    data-message-match="Las contraseñas coinciden"
+                                >Confirma tu contraseña</li>
                             </ul>
                         {% endif %}
                         {% if field.help_text %}<small>{{ field.help_text }}</small>{% endif %}

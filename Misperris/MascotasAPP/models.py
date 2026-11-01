@@ -1,6 +1,9 @@
+from decimal import Decimal, ROUND_HALF_UP
+
 from django.core.exceptions import ValidationError
 from django.conf import settings
 from django.db import models
+
 from MascotasAPP.choices import estados_adopcion, sexos_mascotas
 from MascotasAPP.validators import validate_email_domain_suffix
 
@@ -45,6 +48,23 @@ class Mascotas(models.Model):
     @property
     def edad_en_anos(self):
         return format(self.Edad.normalize(), 'f')
+
+    @property
+    def edad_formateada(self):
+        total_meses = int(
+            (Decimal(str(self.Edad)) * Decimal('12')).quantize(
+                Decimal('1'),
+                rounding=ROUND_HALF_UP,
+            )
+        )
+        años, meses = divmod(total_meses, 12)
+
+        partes = []
+        if años:
+            partes.append(f"{años} {'año' if años == 1 else 'años'}")
+        if meses or not años:
+            partes.append(f"{meses} {'mes' if meses == 1 else 'meses'}")
+        return ' y '.join(partes)
 
     def clean(self):
         super().clean()

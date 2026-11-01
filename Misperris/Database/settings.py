@@ -4,7 +4,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 TEMPLATES_DIRS = BASE_DIR / 'Templates'
-STATIC_DIR = os.path.join(BASE_DIR, 'static')
+STATIC_DIR = BASE_DIR / 'Static'
 
 # Clave para el entorno local del proyecto; no reutilizar en producción.
 SECRET_KEY = 'django-insecure-misperris-clase-local-2026'

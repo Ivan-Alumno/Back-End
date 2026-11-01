@@ -1,0 +1,114 @@
+HISTORIAL DE PEDIDOS Y RESULTADOS
+Proyecto Misperris
+
+Este archivo resume los pedidos realizados desde la solicitud anterior.
+No incluye contraseñas en claro.
+
+1. Acceso y gestión privada
+Pedido:
+- Revisar el código actual del proyecto en busca de errores.
+
+Resultado:
+- Se analizó registro, inicio y cierre de sesión.
+- El registro vincula una cuenta con su perfil de cliente.
+- No se encontraron errores, se recomienda añadir un gestor de solicitudes pendientes competidoras.
+
+2. Perfil de administración de prueba
+Pedido: Se solicitó la creación de un usuario con permisos de administrador y hacer pruebas de las nuevas funciones.
+
+Resultado:
+- Se creó la cuenta administrativa de evaluación y se configuró la ayuda solicitada. Las credenciales no se reproducen en este archivo.
+- El acceso a gestión se restringe correctamente a miembros del grupo de administradores del sitio.
+
+3. Preferencias de evaluación y consulta de frameworks
+Pedido:
+- Considerar la evaluación como un entorno cerrado y seguir las indicaciones visuales solicitadas, manteniendo atención a contraseñas y validación de
+  usuarios, correos y datos.
+- Identificar los frameworks del proyecto.
+
+Resultado:
+- Se identificó Django en Python para backend y plantillas; HTML, JavaScript
+  nativo y CSS propio para frontend; MySQL/MariaDB como base de datos. No se
+  encontró un framework CSS como Bootstrap o Tailwind.
+
+4. Ajustes de login, encabezado e imagen
+Pedido:
+- Mostrar el saludo del usuario con la tipografía del encabezado.
+- Ajustar el encabezado y el aspecto visual a la imagen de referencia.
+- Informar las dimensiones de la imagen y ajustar su proporción sin deformarla.
+
+Resultado:
+- El saludo utiliza el mismo estilo tipográfico del menú.
+- La portada muestra imagen, hora local y recuentos de la base de datos.
+- La imagen de portada original mide 1024 x 683 píxeles. Se ajustó para conservar sus proporciones.
+
+5. Banner
+Pedido:
+- Restaurar el tamaño anterior del banner y cambiar solo la visualización de la imagen.
+- Rellenar los laterales oscuros sin cambiar el tamaño del cuadro ni deformar la foto principal.
+
+Resultado:
+- Se restauró el banner a 300 píxeles de alto (280 en pantallas pequeñas).
+- Se mostró la imagen completa con object-fit: contain.
+- Se probaron laterales con una versión ampliada y desenfocada de la misma fotografía.
+- Posteriormente el usuario deshizo esos cambios de CSS.
+
+6. Datos de prueba y GitHub
+Pedido:
+- Añadir diez usuarios y diez mascotas.
+- Crear un commit corto que agrupara los cambios y subirlo al repositorio Back-End.
+
+Resultado:
+- Se añadieron diez cuentas nuevas vinculadas a perfiles de cliente y diez mascotas disponibles. 
+  Se comunicaron las credenciales de las cuentas por separado; no se copian aquí.
+- Se creó el commit d3a4364, "Implementa gestión privada y flujo de adopciones", y se subió a main en GitHub.
+- En una comprobación posterior de la base activa se observaron 13 usuarios, 11 clientes, 9 mascotas y 2 solicitudes.
+  Los datos de MySQL son locales y no quedan guardados en Git.
+
+7. Exportación de la base de datos
+Pedido:
+- Saber qué datos se conservan al exportar MySQL para entregar el proyecto.
+
+Resultado:
+- Se explicó que un export completo con estructura y datos guarda los
+  registros de usuarios, clientes, mascotas, adopciones, grupos y permisos.
+- Las fotografías subidas no están dentro de MySQL: el export guarda sus
+  rutas, por lo que las imágenes deben acompañarse por separado si se desean conservar.
+- El código, configuración del servidor y archivos estáticos tampoco forman
+  parte del SQL.
+
+8. Revisión de rúbrica y preparación de entrega
+Pedido:
+- Revisar la rúbrica de conexión segura, CRUD, autenticación y permisos, sin modificar código.
+- Identificar elementos no relacionados para la entrega.
+
+Resultado:
+- Se identificaron autenticación, permisos de gestión y CRUD en el panel privado.
+- Se advirtió que la conexión con MySQL debía comprobarse con el servidor encendido y que las credenciales/configuración de base de datos estaban
+  escritas directamente en settings.py.
+- Se señaló que los formularios CRUD están en el área privada, no en la interfaz pública, por lo que conviene confirmar cómo interpreta la rúbrica ese requisito.
+- Se indicó que el SQL debe acompañarse con las fotos de media si la entrega debe conservarlas.
+
+9. Conexión MySQL, archivos estáticos y separación del CSS
+Pedido:
+- Confirmar la base habilitada.
+- No modificar dependencias ni media.
+- Separar el CSS en archivos correspondientes a cada área del proyecto.
+
+Resultado:
+- Se confirmó conexión con MariaDB 11.8.9 y que no había migraciones pendientes.
+- Se encontró y corrigió STATIC_DIR que apunta a "static" en vez de a la carpeta "Static".
+- El CSS se separó en Static/css/base.css, home.css, pets.css, auth.css y admin.css.
+- Las plantillas se actualizaron para cargar los archivos por sección.
+- Se verificaron las rutas estáticas, las páginas públicas y los 17 tests.
+- No se modificaron las dependencias ni la carpeta media.
+
+10. Presentación de edad
+Pedido:
+- Mostrar la edad de las mascotas en años y meses en vez de años decimales en la galeria de adopciones.
+
+Resultado:
+- La edad se presenta en años y meses en la portada, adoptables y listado del Admin.
+    Por ejemplo, 0.5 equivale a 6 meses y 1.5 a 1 año y 6 meses.
+- La edad sigue almacenándose como años decimales; no fue necesaria una migración.
+- Pasaron los 19 tests, Django no detectó cambios de modelo pendientes y la conexión a la base fue comprobada.

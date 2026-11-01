@@ -6,7 +6,9 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Misperris</title>
-        <link rel="stylesheet" href="{% static 'css/Index.css' %}">
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
+        <link rel="stylesheet" href="{% static 'css/home.css' %}">
+        <link rel="stylesheet" href="{% static 'css/pets.css' %}">
     </head>
 
     <body>
@@ -64,7 +66,7 @@
                             <div class="pet-info">
                                 <h3>{{ mascota.nombre }}</h3>
                                 <p><strong>Raza:</strong> {{ mascota.raza }}</p>
-                                <p><strong>Edad:</strong> {{ mascota.edad_en_anos }} años</p>
+                                <p><strong>Edad:</strong> {{ mascota.edad_formateada }}</p>
                                 <p><strong>Estado:</strong> {{ mascota.get_estado_adopcion_display }}</p>
                             </div>
                         </article>

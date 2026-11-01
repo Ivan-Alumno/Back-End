@@ -36,6 +36,16 @@ class AvailableMascotasCheckboxSelectMultiple(forms.CheckboxSelectMultiple):
         return super().render(name, value, attrs, renderer)
 
 class MascotasAdminForm(forms.ModelForm):
+    Edad = forms.DecimalField(
+        label='Edad (años)',
+        help_text=(
+            'Ingresa la edad en años; por ejemplo, 0.5 equivale aproximadamente '
+            'a 6 meses. En las listas se muestra en años y meses.'
+        ),
+        max_digits=5,
+        decimal_places=1,
+    )
+
     class Meta:
         model = Mascotas
         fields = '__all__'
@@ -106,9 +116,9 @@ class MascotasAdmin(admin.ModelAdmin):
         ('Registro', {'fields': ('añadido',)}),
     )
 
-    @admin.display(description='Edad (años)', ordering='Edad')
+    @admin.display(description='Edad', ordering='Edad')
     def edad(self, obj):
-        return obj.edad_en_anos
+        return obj.edad_formateada
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
         if db_field.name == 'adoptado_por':

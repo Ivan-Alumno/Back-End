@@ -73,6 +73,16 @@ class ClienteGestionForm(forms.ModelForm):
 
 
 class MascotaGestionForm(forms.ModelForm):
+    Edad = forms.DecimalField(
+        label='Edad (años)',
+        help_text=(
+            'Ingresa la edad en años; por ejemplo, 0.5 equivale aproximadamente '
+            'a 6 meses. En las listas se muestra en años y meses.'
+        ),
+        max_digits=5,
+        decimal_places=1,
+    )
+
     class Meta:
         model = Mascotas
         fields = (

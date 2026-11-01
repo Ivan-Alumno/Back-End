@@ -6,7 +6,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Galería de mascotas</title>
-        <link rel="stylesheet" href="{% static 'CSS/Index.css' %}">
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
+        <link rel="stylesheet" href="{% static 'css/pets.css' %}">
     </head>
 
     <body>
@@ -26,7 +27,7 @@
                             <div class="pet-info">
                                 <h3>{{ mascota.nombre }}</h3>
                                 <p><strong>Raza:</strong> {{ mascota.raza }}</p>
-                                <p><strong>Edad:</strong> {{ mascota.edad_en_anos }} años</p>
+                                <p><strong>Edad:</strong> {{ mascota.edad_formateada }}</p>
                                 <p><strong>Estado:</strong> {{ mascota.get_estado_adopcion_display }}</p>
                                 <p>{{ mascota.descripcion }}</p>
                                 {% if mascota.estado_adopcion == 'disponible' %}

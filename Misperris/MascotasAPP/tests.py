@@ -1,3 +1,4 @@
+from decimal import Decimal
 from io import StringIO
 from unittest.mock import patch
 
@@ -57,6 +58,34 @@ class PublicAdoptionFlowTests(TestCase):
         self.assertContains(response, 'password-validation.js')
         self.assertContains(response, 'contraseñas comunes')
 
+    def test_password_confirmation_starts_neutral_instead_of_claiming_match(self):
+        response = self.client.get(reverse('registro'))
+
+        self.assertContains(response, 'Confirma tu contraseña')
+        self.assertContains(response, 'data-message-mismatch="Las contraseñas no coinciden"')
+        self.assertContains(response, 'data-message-match="Las contraseñas coinciden"')
+        self.assertNotContains(response, '>Las contraseñas coinciden</li>')
+
+    def test_pet_age_is_formatted_as_years_and_months(self):
+        cases = (
+            ('0.3', '4 meses'),
+            ('0.5', '6 meses'),
+            ('1.0', '1 año'),
+            ('1.5', '1 año y 6 meses'),
+            ('2.0', '2 años'),
+        )
+
+        for age, expected in cases:
+            with self.subTest(age=age):
+                pet = Mascotas(
+                    nombre='Luna',
+                    raza='Mestiza',
+                    sexo='H',
+                    Edad=Decimal(age),
+                    descripcion='Amigable',
+                )
+                self.assertEqual(pet.edad_formateada, expected)
+
     def test_homepage_shows_database_totals_and_banner(self):
         Clientes.objects.create(
             nombre='Ana',
@@ -72,6 +101,10 @@ class PublicAdoptionFlowTests(TestCase):
         self.assertEqual(response.context['cantidad_mascotas'], 1)
         self.assertContains(response, 'images/Perros_portada.png')
         self.assertContains(response, 'home-clock')
+        self.assertContains(response, 'Edad:</strong> 1 año')
+
+        gallery = self.client.get(reverse('adoptables'))
+        self.assertContains(gallery, 'Edad:</strong> 1 año')
 
     def test_registration_creates_user_and_linked_client(self):
         response = self.client.post(reverse('registro'), {
